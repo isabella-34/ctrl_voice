@@ -40,40 +40,15 @@ st.image(image, width=200)
 
 st.write("Presiona el botón y habla.")
 
-st.markdown("""
-<style>
-.voice-btn {
-    display: inline-block;
-    padding: 12px 30px;
-    font-size: 18px;
-    font-weight: 500;
-    color: white;
-    background-color: #4CAF50;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-.voice-btn:active {
-    background-color: #2e7d32;
-    opacity: 0.5; /* efecto opaco cuando se presiona */
-}
-</style>
-<button class="voice-btn" id="voiceButton">🎤 Iniciar</button>
-""", unsafe_allow_html=True)
+stt_button = Button(label=" Inicio ", width=200)
 
 stt_button = Button(label="", width=0)
 
 stt_button.js_on_event("button_click", CustomJS(code="""
-var btn = document.getElementById("voiceButton");
-
-btn.onclick = function() {
-    btn.style.opacity = "0.5"; // se pone opaco al escuchar
-    
     var recognition = new webkitSpeechRecognition();
     recognition.continuous = true;
     recognition.interimResults = true;
-
+ 
     recognition.onresult = function (e) {
         var value = "";
         for (var i = e.resultIndex; i < e.results.length; ++i) {
@@ -81,15 +56,12 @@ btn.onclick = function() {
                 value += e.results[i][0].transcript;
             }
         }
-        if (value != "") {
+        if ( value != "") {
             document.dispatchEvent(new CustomEvent("GET_TEXT", {detail: value}));
-            btn.style.opacity = "1"; // vuelve a normal cuando termina
         }
     }
-
     recognition.start();
-}
-"""))
+    """))
 
 result = streamlit_bokeh_events(
     stt_button,
