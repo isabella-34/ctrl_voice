@@ -31,16 +31,14 @@ client1.on_message = on_message
 st.title("Control por voz")
 st.subheader("Da órdenes y el sistema te obedecerá")
 
-image = Image.open('hablar.png')
+col1, col2 = st.columns(2)
+with col1:
+    image = Image.open('hablar.png')
+    st.image(image, width=200)
 
-st.image(image, width=200)
-
-
-
-
-st.write("Presiona el botón y habla.")
-
-stt_button = Button(label=" Inicio ", width=200, button_type="primary")
+with col2:
+    st.write("Presiona el botón y habla.")
+    stt_button = Button(label=" Inicio ", width=200, button_type="warning")
 
 #stt_button = Button(label="", width=0)
 
