@@ -36,7 +36,7 @@ with col2:
     image = Image.open('hablar.png')
     st.image(image, use_container_width=True)
 
-    stt_button = Button(label=" Presiona aquí y habla", use_container_width=True, button_type="warning")
+    stt_button = Button(label=" Presiona aquí y habla", width=300, button_type="warning")
 
     stt_button.js_on_event("button_click", CustomJS(code="""
         var recognition = new webkitSpeechRecognition();
