@@ -59,7 +59,7 @@ with col2:
         recognition.start();
         """))
 
-        st.write("El sistema debe estar respondiendo a tus órdenes a los pocos segundos de darlas.")
+        st.markdown("<h4>El sistema debe estar respondiendo a tus órdenes a los pocos segundos de darlas.</h4>", unsafe_allow_html=True)
 
     result = streamlit_bokeh_events(
         stt_button,
