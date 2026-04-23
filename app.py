@@ -31,14 +31,12 @@ client1.on_message = on_message
 st.title("Control por voz")
 st.subheader("Da órdenes y el sistema te obedecerá")
 
-col1, col2 = st.columns(2)
-with col1:
-    image = Image.open('hablar.png')
-    st.image(image, width=200)
-
+col1, col2, col3 = st.columns(3)
 with col2:
-    st.write("Presiona el botón y habla.")
-    stt_button = Button(label=" Inicio ", width=200, button_type="warning")
+    image = Image.open('hablar.png')
+    st.image(image, use_container_width=True)
+
+    stt_button = Button(label=" Presiona aquí y habla", use_container_width=True, button_type="warning")
 
     stt_button.js_on_event("button_click", CustomJS(code="""
         var recognition = new webkitSpeechRecognition();
