@@ -29,13 +29,15 @@ client1.on_message = on_message
 
 
 st.title("Control por voz")
-st.subheader("Da órdenes y el sistema te obedecerá")
 
-col1, col2, col3 = st.columns(3)
-with col2:
+
+col1, col2 = st.columns(2)
+with col1:
     image = Image.open('hablar.png')
     st.image(image, use_container_width=True)
 
+with col2:
+    st.subheader("Da órdenes y el sistema te obedecerá")
     stt_button = Button(label=" Presiona aquí y habla", width=150, button_type="warning")
 
     stt_button.js_on_event("button_click", CustomJS(code="""
@@ -56,7 +58,9 @@ with col2:
         }
         recognition.start();
         """))
-    
+
+        st.write("El sistema debe estar respondiendo a tus órdenes a los pocos segundos de darlas.")
+
     result = streamlit_bokeh_events(
         stt_button,
         events="GET_TEXT",
