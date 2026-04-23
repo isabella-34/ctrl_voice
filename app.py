@@ -59,8 +59,6 @@ with col2:
         recognition.start();
         """))
 
-    st.markdown("<h4>El sistema debe estar respondiendo a tus órdenes a los pocos segundos de darlas.</h4>", unsafe_allow_html=True)
-
     result = streamlit_bokeh_events(
         stt_button,
         events="GET_TEXT",
@@ -68,6 +66,7 @@ with col2:
         refresh_on_update=False,
         override_height=75,
         debounce_time=0)
+    st.markdown("<p1>El sistema debe estar respondiendo a tus órdenes a los pocos segundos de darlas.</p1>", unsafe_allow_html=True)
 
 if result:
     if "GET_TEXT" in result:
