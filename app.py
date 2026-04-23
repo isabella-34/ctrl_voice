@@ -23,7 +23,7 @@ def on_message(client, userdata, message):
 
 broker="broker.mqttdashboard.com"
 port=1883
-client1= paho.Client("GIT-HUBC")
+client1= paho.Client("clientima006")
 client1.on_message = on_message
 
 
@@ -38,7 +38,7 @@ st.image(image, width=200)
 
 
 
-st.write("Toca el Botón y habla ")
+st.write("Presiona el botón y habla ")
 
 stt_button = Button(label=" Inicio ", width=200)
 
@@ -75,7 +75,7 @@ if result:
         client1.on_publish = on_publish                            
         client1.connect(broker,port)  
         message =json.dumps({"Act1":result.get("GET_TEXT").strip()})
-        ret= client1.publish("voice_ctrl", message)
+        ret= client1.publish("voice_ctrl_moli", message)
 
     
     try:
