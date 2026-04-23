@@ -38,7 +38,39 @@ with col1:
 
 with col2:
     st.subheader("Da órdenes y el sistema te obedecerá")
-    stt_button = Button(label=" Presiona aquí y habla", width=150, button_type="warning")
+    stt_button = Button(label=" Presiona aquí y habla", width=200, button_type="warning")
+
+    stt_button.js_on_event("button_click", CustomJS(code="""
+        var btn = document.querySelector('.bk-btn-warning');
+        if (btn){
+            btn.style.fontSize = "17px";   // 👈 tamaño igual al texto
+            btn.style.fontWeight = "400";  // 👈 menos grueso
+            btn.style.padding = "8px 16px";
+            btn.style.opacity = "0.5";     // efecto mientras escucha
+        }
+    
+        var recognition = new webkitSpeechRecognition();
+        recognition.continuous = true;
+        recognition.interimResults = true;
+    
+        recognition.onresult = function (e) {
+            var value = "";
+            for (var i = e.resultIndex; i < e.results.length; ++i) {
+                if (e.results[i].isFinal) {
+                    value += e.results[i][0].transcript;
+                }
+            }
+            if (value != "") {
+                document.dispatchEvent(new CustomEvent("GET_TEXT", {detail: value}));
+    
+                if (btn){
+                    btn.style.opacity = "1"; // vuelve a normal
+                }
+            }
+        }
+    
+        recognition.start();
+    """))
 
     stt_button.js_on_event("button_click", CustomJS(code="""
         var recognition = new webkitSpeechRecognition();
