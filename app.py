@@ -33,7 +33,7 @@ st.title("Control por voz 📢⊹₊⟡⋆")
 
 col1, col2 = st.columns(2)
 with col1:
-    image = Image.open('hablar.png')
+    image = Image.open('voz.jpg')
     st.image(image, use_container_width=True)
 
 with col2:
