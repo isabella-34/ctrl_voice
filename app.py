@@ -28,7 +28,7 @@ client1.on_message = on_message
 
 
 
-st.title("Control por voz")
+st.title("Control por voz 📢⊹₊⟡⋆")
 
 
 col1, col2 = st.columns(2)
@@ -37,7 +37,7 @@ with col1:
     st.image(image, use_container_width=True)
 
 with col2:
-    st.subheader("Da órdenes y el sistema te obedecerá")
+    st.subheader("Da órdenes y el sistema te obedecerá ✧˖°.")
     stt_button = Button(label=" Presiona aquí y habla", width=130, button_type="warning")
 
     stt_button.js_on_event("button_click", CustomJS(code="""
